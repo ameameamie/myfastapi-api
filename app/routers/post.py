@@ -33,8 +33,8 @@ def get_posts(db: Session = Depends(get_db), limit: int = 10, skip: int = 0, sea
 
 @router.post("/", status_code=status.HTTP_201_CREATED, response_model=schemas.PostResponse)
 def create_post(post: schemas.PostCreate, db: Session = Depends(get_db), current_user: models.User = Depends(oauth2.get_current_user)):
-    # cursor.execute('INSERT INTO posts (title, content, is_draft) VALUES (%s, %s, %s) RETURNING *;',
-    #                (post.title, post.content, post.is_draft))
+    # cursor.execute('INSERT INTO posts (title, content, visible) VALUES (%s, %s, %s) RETURNING *;',
+    #                (post.title, post.content, post.visible))
     # new_post = cursor.fetchone()
     # connection.commit()
     post = post.model_dump()
@@ -108,7 +108,7 @@ def update_post(
     db: Session = Depends(get_db),
     current_user: models.User = Depends(oauth2.get_current_user),
 ):
-    # cursor.execute('UPDATE posts SET title = %s, content = %s, is_draft = %s WHERE id = %s RETURNING *', (post.title, post.content, post.is_draft, id))
+    # cursor.execute('UPDATE posts SET title = %s, content = %s, visible = %s WHERE id = %s RETURNING *', (post.title, post.content, post.visible, id))
     # post = cursor.fetchone()
     # connection.commit()
 

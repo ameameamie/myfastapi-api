@@ -23,7 +23,7 @@ class UserLogin(BaseModel):
 class PostBase(BaseModel):
     title: str
     content: str
-    is_draft: bool = True
+    visible: bool = True
 
 
 class PostCreate(PostBase):
